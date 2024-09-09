@@ -1,0 +1,76 @@
+import { CommonModule } from '@angular/common';
+import { afterNextRender, Component } from '@angular/core';
+import { error } from 'console';
+import { filter, from, interval, map, Observable,range,take} from 'rxjs';
+
+@Component({
+  selector: 'app-observable-demo1',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './observable-demo1.component.html',
+  styleUrl: './observable-demo1.component.css'
+})
+export class ObservableDemo1Component {
+  numbers:any;
+  numbers_5:any;
+  allSubscriptions:any=[];
+  time:any;
+
+  constructor(){
+    afterNextRender({
+      write:()=>{
+        this.numbers=interval(1000);
+        this.numbers_5=this.numbers.pipe(take(5));
+        let numbersSubscriber=this.numbers.subscribe((ele:any)=>console.log(ele));
+        this.allSubscriptions.push(numbersSubscriber);
+
+        // Digital Clock
+        this.time=new Observable<string>( observer=>{
+          setInterval(()=>observer.next(new Date().toString()),1000);
+        } )
+
+      }
+    })
+  }
+  ngOnInit(){
+    // publisher1
+    let publisher1=new Observable((observer)=>{
+      observer.next('AAAAA');
+      observer.next('BBBBB');
+      observer.next('CCCCC');
+      observer.next('DDDDD');
+      observer.complete();
+    });
+    let subscriber1=publisher1.subscribe({
+      next:(data)=>{
+        console.log("next method called")
+        console.log(data)
+      },
+      error:(data)=>{console.log(data)},
+      complete:()=>{console.log("all data received")}
+    });
+
+    let cars=["Tata","Honda","Maruthi"]
+    let carsPublisher=from(cars);
+    let carsSubscriber=carsPublisher.subscribe((val)=>{console.log(val)});
+    this.allSubscriptions.push(carsSubscriber);
+    
+    let nums=range(1,10);
+    let numsSubscriber=nums.subscribe((val)=>console.log(val));
+    this.allSubscriptions.push(numsSubscriber);
+
+    let even_nums=nums.pipe(filter((ele)=>ele%2==0));
+    let evennumsSubscriber=even_nums.subscribe((val)=>console.log(val));
+    this.allSubscriptions.push(evennumsSubscriber);
+
+    let square_nums=nums.pipe(map((ele)=>ele*ele));
+    let squarenumsSubscriber=square_nums.subscribe((val)=>console.log(val));
+    this.allSubscriptions.push(squarenumsSubscriber);
+  }
+  ngOnDestroy(){
+    console.log(this.allSubscriptions);
+    for(let ele of this.allSubscriptions){
+      ele.unsubscribe();
+    }
+  }
+}

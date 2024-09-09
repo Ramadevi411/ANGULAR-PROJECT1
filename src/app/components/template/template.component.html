@@ -1,0 +1,22 @@
+<style>
+    h4{
+        color:brown
+    }
+</style>
+
+
+
+<h2>Template Reference Variable</h2>
+<input [(ngModel)]="num1" type="number"/>
+<input [(ngModel)]="num2" type="number"/>
+<br>
+<h4 style="color:blueviolet">addition is {{num1+num2}}</h4>
+<h4>subtraction is {{num1-num2}}</h4>
+<hr>
+
+<input type="number" #num3/>
+<input type="number" ref-num4>
+<button class="btn btn-primary" (click)="addition(num3.value,num4.value)">add</button>
+<button class="btn btn-primary" (click)="subtraction(num3.value,num4.value)">sub</button>
+<button class="btn btn-primary" (click)="multiplication(num3,num4)">mul</button>
+<button class="btn btn-primary" (click)="division(num3,num4)">div</button>

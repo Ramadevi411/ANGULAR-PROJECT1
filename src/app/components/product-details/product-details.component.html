@@ -1,0 +1,21 @@
+<h2 class="text-center">Product Details Component</h2>
+@if(isLoading){
+    <h2>Loading....</h2>
+}@else{
+    <div class="col-sm-3 offset-4">
+        <div class="card text-center m-1">
+            <img src="{{product?.image}}" class="card-img-top" alt="..." height="200">
+            <div class="card-body">
+                <h5 class="card-title">{{product?.category}}</h5>
+                <p class="card-text text-truncate">{{product?.title}}</p>
+                <p class="card-text text-truncate">{{product?.description}}</p>
+                <p class="card-text">{{product?.price}}</p>
+                <p class="card-text">{{product?.rating?.rate}}</p>
+                <!-- <button class="btn btn-primary" [routerLink]="['/productdetails', prod.id]">
+                  Details</button> -->
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,28 @@
+<h3 class="text-center">Form Demo-1</h3>
+<form name="myForm">
+    Name:
+    <input name="userName" [(ngModel)]="name" required><br/>
+    Age:
+    <input name="userAge" [(ngModel)]="age">
+</form>
+
+<h2 class="text-center">Template Form</h2>
+<div class="col-sm-6 offset-3 border p-2">
+    <form #myForm="ngForm" (click)="submitMyForm(myForm.value)">
+        <p>FirstName:<input name="firstName" #fname="ngModel" required minlength="5" ngModel></p>
+        <span *ngIf="fname.dirty && fname.hasError('required')" class="text-danger m-2">firstname is required</span>
+        <span *ngIf="fname.dirty && fname?.errors?.['minlength']" class="text-danger m-2">Minimum 5 characters</span>
+        <p>LastName:<input name="lastName"   #lname="ngModel" required ngModel></p>
+        <p>Email:<input name="email" type="email" minlength="5" required ngModel></p>
+        <fieldset ngModelGroup="address">
+            <p>City:<input name="city"  #city="ngModel" ngModel></p>
+            <p>State:<input name="state"  #state="ngModel" ngModel></p>
+            <p>Pincode:<input name="pincode"  #pincode="ngModel" ngModel></p>
+        </fieldset>
+        <input type="submit" value="submit" [disabled]="myForm.invalid" class="btn btn-primary m-2">
+        <input type="reset" value="reset">
+        {{fname.errors | json}}
+    </form>
+    <pre>{{myForm.status}}</pre>
+    <pre>{{myForm.value | json}}</pre>
+</div>

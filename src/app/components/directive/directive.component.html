@@ -1,0 +1,115 @@
+<h3 class="text-center">Directive Component</h3>
+<!-- before angular17 -->
+<h2 class="text-center">If example</h2>
+<h2 *ngIf="num % 2 == 0">{{ num }} is even</h2>
+<h2 *ngIf="num % 2 != 0">{{ num }} is odd</h2>
+<hr />
+<!-- after angular17 -->
+@if(num%2==0){
+<h3>{{ num }} is even number</h3>
+}@else{
+<h3>{{ num }} is odd number</h3>
+}
+<hr />
+<!-- before angular17 -->
+<h2 class="text-center">Switch example</h2>
+<h3>Day Number:{{ dayNumber }}</h3>
+<div [ngSwitch]="dayNumber">
+  <div *ngSwitchCase="1">Monday</div>
+  <div *ngSwitchCase="2">Tuesday</div>
+  <div *ngSwitchCase="3">Wednesday</div>
+  <div *ngSwitchCase="4">Thursday</div>
+  <div *ngSwitchCase="5">Friday</div>
+  <div *ngSwitchCase="6">Saturday</div>
+  <div *ngSwitchCase="0">Sunday</div>
+</div>
+<hr />
+<!-- after angular17 -->
+@switch(dayNumber){ @case(1){
+<h4>Monday</h4>
+} @case(2){
+<h4>Tuesday</h4>
+} @case(3){
+<h4>Wednesday</h4>
+} @case(4){
+<h4>Thursday</h4>
+} @case(5){
+<h4>Friday</h4>
+} @case(6){
+<h4>Saturday</h4>
+} @case(0){
+<h4>Sunday</h4>
+} }
+<hr />
+<!-- before angular17 -->
+<h2 class="text-center">For example</h2>
+<h3 *ngFor="let car of cars; let i = index; let flag = even">
+  <div *ngIf="flag">{{ car }}--{{ i }}</div>
+</h3>
+<button class="ntn btn-primary" (click)="addCar()">add a new car</button>
+<hr />
+<!-- after angular17 -->
+@for(car of cars;track car;let i=$index){
+<h3>{{ car }}--{{ i }}</h3>
+}@empty{ there are no cars found }
+<hr />
+<!-- Assignment -->
+<h3 class="text-center">Employees Table--1</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Emp Name</th>
+      <th>Emp salary</th>
+    </tr>
+  </thead>
+  @for(e of emp;track e){
+  <tbody>
+    <tr>
+      <td>{{ e.name }}</td>
+      <td>{{ e.salary }}</td>
+    </tr>
+  </tbody>
+  }
+</table>
+<hr />
+
+<!-- Employees Table -->
+<h2 class="text-center">Employees Table--2</h2>
+<table class="table-bordered">
+  <thead>
+    <tr>
+      <th>Employee id</th>
+      <th>Employee name</th>
+      <th>Employee sal</th>
+      <th>Employee gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(emp of employees;track emp.eId){
+    <tr>
+      <td>{{ emp.eId }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.sal }}</td>
+      <td>{{ emp.gender }}</td>
+    </tr>
+    }@empty{ no employees found }
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="addEmp()">add new employee</button>
+<button class="btn btn-primary" (click)="updateEmp()">update employee</button>
+
+<h1 class="text-center">Ng-Style</h1>
+<p style="color:red">This is a Paragraph</p>
+<p [style.color]="num%2==0 ? 'blue':'red'">Add a style</p>
+<p [style.fontSize.px]='num%2==0 ? 48 : 10'> Add style with unit </p>
+<p [style.background-color]=" flag?'green':'blue' "> Add style conditionally </p>
+<p [ngStyle]="myStyle1"> NgStyle for multiple values </p>\
+<p [ngStyle]="StyleToApply()"> NgStyle for multiple values </p>
+<hr/>
+
+<h1 class="text-center">Ng-Class</h1>
+<button class="btn btn-primary">Primary btn</button>
+<button [class.btn-primary]="flag" class="btn mx-1">Primary btn</button>
+<button class="btn" [ngClass]="flag ? 'btn-primary' : 'btn-secondary'">Primary button</button>
+<button class="btn" [ngClass]="applyClasses()">dynamic class</button>
+

@@ -1,0 +1,142 @@
+<h2 class="text-center">DatabindingComponent</h2>
+<h4>My Name is: {{name}}</h4>
+<h4>My Name is: <span [innerHTML]="name"></span></h4>
+<h4>My Name is: <span bind-innerHTML="name"></span></h4>
+ 
+<input value="MahindraSinghDhoni"/><br/>
+<input value="{{name}}"/><br/>
+<input [value]="name"/><br/>
+<input bind-value="name"/><br/>
+<input [(ngModel)]="name" class="mx-1"/><br/>
+<input type="text" onChange="userIdChanged()" (ngModelChange)="onUserIdChange($event)" [(ngModel)]="userId"/>
+<h4>user id is:{{userId}}</h4>
+
+<img src="https://cdn.britannica.com/25/222725-050-170F622A/Indian-cricketer-Mahendra-Singh-Dhoni-2011.jpg" class="mx-2"/>
+<img src="{{img_url}}" class="mx-2">
+<img [src]="img_url" class="mx-2">
+<!-- <img [attr.src]="img_url" class="mx-2"> attribute -->
+<img bind-src="img_url" class="mx-2"><br/>
+
+<button class="btn btn-primary m-1" disabled="true">btn-1</button>
+<button class="btn btn-primary m-1" disabled="{{flag}}">btn-2</button>
+<button class="btn btn-primary m-1" [disabled]="flag">btn-3</button>
+<button class="btn btn-primary m-1" bind-disabled="flag">btn-4</button>
+<button class="btn btn-primary m-1" (click)="f1()">btn-5</button>
+<button class="btn btn-primary m-1" on-click="f1()">btn-6</button>
+<button class="btn btn-primary m-1" on-click="changeName()">change name</button>
+<hr>
+
+<h2>Assignment-1</h2>
+<div>
+    <p [hidden]="isVisible" style="border-width:5px; border-color:blue;">This is the small paragraph for testing</p>
+</div>
+<button class="btn btn-primary mx-1" on-click="toggleVisible()">show/hide</button><br/>
+
+<h2>Assign-1(sir)</h2>
+<h2 [hidden]="flag">This is a Paragraph</h2>
+<button class="btn btn-secondary mx-1" (click)="toggleFlag()">show/hide</button>
+<button class="btn btn-primary mx-1" (click)="flag=!flag">{{!flag ? 'hide':'show'}}</button><br/>
+<hr>
+
+
+<h2>Assignment-2</h2>
+<div style="text-align:center;">
+    <h1>Character Countdown Text Area</h1>
+    <textarea [(ngModel)]="textContent" (input)="updateRemainingChars()" [attr.maxlength]="maxLength"></textarea>
+    <p>Remaining Characters:{{remainingChars}}</p>
+</div>
+
+<h2>Assign-2(sir)</h2>
+<textarea maxLength="100" [(ngModel)]="msg"></textarea>
+<div>Remaining Chars:{{100-msg.length}}</div>
+<hr>
+
+<select [(ngModel)]="selectedState">
+    <option>odisha</option>
+    <option>kerala</option>
+    <option>tamilnadu</option>
+    <option>karnataka</option>
+    <option>andhra pradesh</option>
+    <option>chennai</option>
+    <option>bihar</option>
+</select>
+<div>selected state name is : {{selectedState}}</div>
+<hr>
+
+<h1>Operators</h1>
+<label for="num1">Number1</label>
+<input [(ngModel)]="num1" type="number"/>
+<label for="num2">Number2</label>
+<input  [(ngModel)]="num2" type="number"/>
+
+<h4>addition is {{num1+num2}}</h4>
+<h4>subtraction is {{num1-num2}}</h4>
+<h4>multiplication is {{num1*num2}}</h4>
+<h4>division is {{num1/num2}}</h4>
+<h4>floor division is {{num1//num2}}</h4>
+<hr>
+<!-- <select [(ngModel)]="selectedOperator">
+    <option>+</option>
+    <option>-</option>
+    <option>*</option>
+    <option>/</option>
+    <option>+</option>
+    <option>+</option>
+</select>
+<h3>addition is (ngModelChange)=add($eve)</h3>
+<h3>subtraction is {{num1-num2}}</h3>
+<h3>multiplication is {{num1*num2}}</h3>
+<h3>division is {{num1/num2}}</h3>
+<h3>floor division is {{num1//num2}}</h3>
+<h3>modulus is {{num1%num2}}</h3> -->
+<hr>
+
+<h2>password hiding</h2>
+<input [type]="show ? 'text':'password'">
+<button (click)="password()">{{show ? 'show':'hide'}}</button>
+<hr>
+
+<h2>Ligth and Dark functionality</h2>
+<button class="btn btn-primary" (click)="toggleMode()">{{!flag ? 'dark':'light'}}</button>
+<hr/>
+
+<h2>Attribute vs Property</h2>
+<input id="myBox1" value="Dhoni">
+<hr>
+<p>2nd example for Attribute vs Property</p>
+<table border="1" [attr.width]="myWidth">
+<!-- <table class="table table-bordered" [width]="myWidth"> -->
+    <tr>
+      <!-- <th colspan={{colspanValue}}>Name</th> not possible to bind interpolation because it is not a property-->
+      <!-- <th [attr.colspan]="colspanValue">Name</th> -->
+      <th [colSpan]="colspanValue">Name</th>
+      <th>Age</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>57</td>
+    </tr>
+  </table>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
