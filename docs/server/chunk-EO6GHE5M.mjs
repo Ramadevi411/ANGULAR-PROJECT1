@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Ta as o,Ua as a,V as n,cb as r,gb as i}from"./chunk-MPZBSN3N.mjs";import"./chunk-5XUXGTUW.mjs";var c=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["large-component"]],standalone:!0,features:[i],decls:2,vars:0,template:function(t,p){t&1&&(o(0,"h1"),r(1,"This is large/heavy Component"),a())}})}return e})();export{c as LargeComponent};
